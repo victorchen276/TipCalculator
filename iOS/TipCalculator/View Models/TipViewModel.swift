@@ -1,0 +1,32 @@
+//
+//  TipViewModel.swift
+//  TipCalculator
+//
+//  Created by Chen Yue on 23/11/19.
+//  Copyright © 2019 Mt. Zendo. All rights reserved.
+//
+
+import Foundation
+import SwiftUI
+import Combine
+
+
+class TipViewModel: ObservableObject {
+    var amount: String = ""
+    var tipPrecentage: Int = 0
+    var tip: Double?
+    
+    let tipChoices:[Int] = [10, 15, 20, 25]
+    let objectWillChange = PassthroughSubject<TipViewModel, Never>()
+    
+    func calculateTip()  {
+        guard let amount = Double(amount) else {
+            return
+        }
+        print("asdfasfsdf")
+        print(amount)
+        print(tipPrecentage)
+        self.tip = amount * (Double(tipPrecentage) / 100)
+        self.objectWillChange.send(self)
+    }
+}
