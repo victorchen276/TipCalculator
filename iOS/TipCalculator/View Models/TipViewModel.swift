@@ -13,7 +13,11 @@ import Combine
 
 class TipViewModel: ObservableObject {
     var amount: String = ""
-    var tipPrecentage: Int = 0
+    var tipPrecentage: Int = 0 {
+        didSet {
+            self.calculateTip()
+        }
+    }
     var tip: Double?
     
     let tipChoices:[Int] = [10, 15, 20, 25]
@@ -23,7 +27,6 @@ class TipViewModel: ObservableObject {
         guard let amount = Double(amount) else {
             return
         }
-        print("asdfasfsdf")
         print(amount)
         print(tipPrecentage)
         self.tip = amount * (Double(tipPrecentage) / 100)

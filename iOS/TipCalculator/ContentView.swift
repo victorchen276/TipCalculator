@@ -11,30 +11,44 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject private var tipViewModel = TipViewModel()
-    @State private var index = 0
+//    @State private var index = 0
     var body: some View {
-//        Text("Hello, World!")
-        
+
         VStack{
             TextField("Enter amount: ", text: $tipViewModel.amount)
             .padding()
-            Picker(selection: $index, label: Text("Tip Choices")) {
+            Picker(selection: $tipViewModel.tipPrecentage, label: Text("Tip Choices")) {
                 ForEach(tipViewModel.tipChoices, id:\.self) { choice in
                     Text("\(choice)").tag(choice)
 
                 }
             }.pickerStyle(SegmentedPickerStyle())
-            
-                .onTapGesture {
-                    self.tipViewModel.calculateTip()
-            }
-                .padding()
+
+//            .onTapGesture {
+//              self.tipViewModel.calculateTip()
+//            }
+              .padding()
             Text(tipViewModel.tip == nil ? "Tip amount will be displayed here!" : "\(tipViewModel.tip!)")
-            
-            Text("selected: \(self.index)")
-            
+
+
         }
     }
+//
+//    @State private var selectedIndex = 0
+//    var body: some View {
+//       VStack {
+//        Picker(selection: $selectedIndex, label: Text("Please choose")) {
+//            ForEach(tipViewModel.tipChoices, id:\.self) { choice in
+//                Text("\(choice)").tag(choice)
+//
+//            }
+//          }
+////        .onTapGesture {
+////////                            self.tipViewModel.calculateTip()
+////        }
+//        Text("You selected: \(selectedIndex)")
+//       }.pickerStyle(SegmentedPickerStyle())
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
