@@ -23,7 +23,6 @@ struct ContentView: View {
 
                 }
             }.pickerStyle(SegmentedPickerStyle())
-
 //            .onTapGesture {
 //              self.tipViewModel.calculateTip()
 //            }

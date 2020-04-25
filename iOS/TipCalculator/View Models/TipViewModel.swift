@@ -22,6 +22,7 @@ class TipViewModel: ObservableObject {
     
     let tipChoices:[Int] = [10, 15, 20, 25]
     let objectWillChange = PassthroughSubject<TipViewModel, Never>()
+//    let objectWillChange = ObservableObjectPublisher()
     
     func calculateTip()  {
         guard let amount = Double(amount) else {
@@ -31,5 +32,6 @@ class TipViewModel: ObservableObject {
         print(tipPrecentage)
         self.tip = amount * (Double(tipPrecentage) / 100)
         self.objectWillChange.send(self)
+//        self.objectWillChange.send()
     }
 }
